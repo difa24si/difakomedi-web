@@ -1,8 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pelanggan;
+
+
 
 class PelangganController extends Controller
 {
@@ -19,46 +21,54 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pelanggan.create');
     }
+        /**
+         * Store a newly created resource in storage.
+         */
+        public function store(Request $request)
+        {
+            $data['first_name'] = $request->first_name;
+            $data['last_name']  = $request->last_name;
+            $data['birthday']   = $request->birthday;
+            $data['gender']     = $request->gender;
+            $data['email']      = $request->email;
+            $data['phone']      = $request->phone;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            Pelanggan::create($data);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+            return redirect()->route('pelanggan.create')->with('success', 'Penambahan Data Berhasil!');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        /**
+         * Display the specified resource.
+         */
+        public function show(string $id)
+        {
+            //
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        /**
+         * Show the form for editing the specified resource.
+         */
+        public function edit(string $id)
+        {
+            //
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        /**
+         * Update the specified resource in storage.
+         */
+        public function update(Request $request, string $id)
+        {
+            //
+        }
+
+        /**
+         * Remove the specified resource from storage.
+         */
+        public function destroy(string $id)
+        {
+            //
+        }
     }
-}
